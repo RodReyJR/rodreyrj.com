@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PirataspyxHub - Soluciones Tecnológicas</title>
+  <meta name="description" content="PirataspyxHub: Soluciones tecnológicas profesionales y confiables. Reinstalación de sistemas, diseño gráfico, reparación de software y más. Contáctanos hoy con Rod Rey RJ." />
+  <meta name="keywords" content="tecnología, reinstalación Windows, diseño gráfico, reparación celulares, PirataspyxHub, Rod Rey RJ, soluciones digitales" />
+  <meta name="author" content="Rod Rey RJ" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --primary-color: #00CED1;
+      --primary-hover: #00B7B9;
+      --accent-color: #D4A017;
+      --text-color: #1A202C;
+      --text-secondary: #4A5568;
+      --background-overlay: rgba(0, 0, 0, 0.5);
+      --accent-dark: #1A202C;
+      --section-padding: 100px 20px 80px;
+      --max-width: 1400px;
+      --shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      --font-size-base: 1.4rem;
+      --font-size-heading: 3.5rem;
+      --card-background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background: linear-gradient(135deg, #007BFF 0%, #FFFFFF 100%);
+      color: var(--text-color);
+      line-height: 1.8;
+      scroll-behavior: smooth;
+      font-size: var(--font-size-base);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--background-overlay);
+      z-index: -1;
+    }
+    header {
+      background: var(--accent-dark);
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      padding-left: 20px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      color: #fff !important; /* AHORA SIEMPRE BLANCO */
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--primary-color) !important;
+      outline: none;
+    }
+    main {
+      padding-top: 80px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--primary-color);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--text-secondary);
+      max-width: 700px;
+    }
+    section {
+      padding: var(--section-padding);
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--font-size-heading);
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    .servicio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .servicio-card,
+    .precio-card {
+      background: var(--card-background);
+      backdrop-filter: blur(8px);
+      border: var(--glass-border);
+      padding: 25px;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    .servicio-card:hover,
+    .precio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    .servicio-card img,
+    .precio-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      loading: lazy;
+    }
+    .precio-card button {
+      background: #00CED1;
+      color: #1A202C;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid #00B7B9;
+      border-radius: 6px;
+      padding: 12px 25px;
+      margin-top: auto;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, border 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      display: block;
+    }
+    .precio-card button:hover,
+    .precio-card button:focus {
+      background: #009fa3;
+      color: #fff;
+      border: 2px solid #00CED1;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .social-links a {
+      color: var(--primary-color);
+      font-size: 2rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .social-links a:hover,
+    .social-links a:focus {
+      color: var(--accent-color);
+      transform: scale(1.2);
+      outline: none;
+    }
+    footer {
+      background: var(--accent-dark);
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover,
+    footer a:focus {
+      color: var(--accent-color);
+      outline: none;
+    }
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 15px; padding: 10px 0; }
+      .logo { padding: 0; font-size: 1.8rem; }
+      nav a { margin: 8px; font-size: 1rem; }
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.6rem; }
+      section { padding: 80px 15px 60px; }
+      h2 { font-size: 2.5rem; }
+      .servicio-card img, .precio-card img { height: 180px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.3rem; }
+      .precio-card button { width: 100%; font-size: 1rem; }
+      .servicio-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PirataspyxHub</div>
+    <nav aria-label="Navegación principal">
+      <a href="#inicio" aria-current="page">Inicio</a>
+      <a href="#info">Acerca de</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#precios">Precios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio" aria-label="Sección principal">
+      <h1>PIRATASPYXHUB</h1>
+      <p>Soluciones tecnológicas rápidas, confiables y profesionales para tus necesidades digitales.</p>
+    </section>
+
+    <section id="info" class="parallax" aria-labelledby="info-heading" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fm=webp&w=1920&q=80');">
+      <h2 id="info-heading">Acerca de</h2>
+      <div class="servicio-grid">
+        <article class="servicio-card" tabindex="0">
+          <h3>¿Quién soy?</h3>
+          <p>Soy Rod Rey RJ, fundador de PirataspyxHub. Trabajo de forma independiente ofreciendo soluciones informáticas serias, rápidas y confidenciales. Mi misión es garantizar una atención personalizada y de calidad para cada cliente.</p>
+        </article>
+        <article class="servicio-card" tabindex="0">
+          <h3>¿Qué hacemos?</h3>
+          <p>
+            Reinstalación de Windows / Linux<br />
+            Instalación de Windows en Mac<br />
+            Reparación de software de celulares<br />
+            Diseño de logos y carteles profesionales<br /><br />
+            Métodos de pago: Transfer Móvil / Efectivo<br />
+            Contáctame directo al: 56639178<br />
+            Atención seria, personalizada y sin compromiso.<br />
+            ¡Dale vida a tu equipo o negocio con Rod Rey RJ!
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="servicios" aria-labelledby="servicios-heading">
+      <h2 id="servicios-heading">Servicios</h2>
+      <ul class="servicio-grid">
+        <li class="servicio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fm=webp&w=320&q=80" alt="Reinstalación de sistemas operativos" />
+          Reinstalación de Windows / Linux
+        </li>
+        <li class="servicio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&w=320&q=80" alt="Instalación de Windows en Mac" />
+          Instalación de Windows en Mac
+        </li>
+        <li class="servicio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?fm=webp&w=320&q=80" alt="Reparación de software de celulares" />
+          Reparación de software de celulares
+        </li>
+        <li class="servicio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1586717799252-bd134ad00e26?fm=webp&w=320&q=80" alt="Diseño de logos y carteles" />
+          Diseño de logos y carteles profesionales
+        </li>
+        <li class="servicio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fm=webp&w=320&q=80" alt="Eliminación de contraseña en Windows" />
+          Quitar contraseña en Windows
+        </li>
+        <li class="servicio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?fm=webp&w=320&q=80" alt="Eliminación de contraseña en Android" />
+          Quitar contraseña Android (se pierde todo)
+        </li>
+      </ul>
+    </section>
+
+    <section id="precios" class="parallax" aria-labelledby="precios-heading" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&w=1920&q=80');">
+      <h2 id="precios-heading">Precios</h2>
+      <div class="servicio-grid">
+        <article class="precio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fm=webp&w=320&q=80" alt="Reinstalación de Windows o Linux" />
+          Reinstalación de Windows / Linux – <strong>1000 CUP</strong>
+          <button aria-label="Reservar reinstalación de Windows o Linux" onclick="window.open('https://wa.me/5356639178?text=Deseo%20reinstalar%20mi%20PC')">Reservar</button>
+        </article>
+        <article class="precio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&w=320&q=80" alt="Instalación de Windows en Mac" />
+          Instalación de Windows en Mac – <strong>1500 CUP</strong>
+          <button aria-label="Reservar instalación de Windows en Mac" onclick="window.open('https://wa.me/5356639178?text=Quiero%20instalar%20Windows%20en%20mi%20Mac')">Reservar</button>
+        </article>
+        <article class="precio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?fm=webp&w=320&q=80" alt="Eliminación de FRP" />
+          Quitar FRP (eliminación de cuenta Google) – <strong>1000 CUP</strong>
+          <button aria-label="Reservar eliminación de FRP" onclick="window.open('https://wa.me/5356639178?text=Mi%20tel%C3%A9fono%20tiene%20FRP%20y%20quiero%20iniciarlo%20como%20normal')">Reservar</button>
+        </article>
+        <article class="precio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1586717799252-bd134ad00e26?fm=webp&w=320&q=80" alt="Diseño de logos o carteles" />
+          Diseño de logos/carteles – <strong>50 a 200 CUP</strong>
+          <button aria-label="Reservar diseño gráfico" onclick="window.open('https://wa.me/5356639178?text=Estoy%20interesado%20en%20un%20dise%C3%B1o%20gr%C3%A1fico')">Reservar</button>
+        </article>
+        <article class="precio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fm=webp&w=320&q=80" alt="Eliminación de contraseña en Windows" />
+          Quitar contraseña en Windows – <strong>200 CUP</strong>
+          <button aria-label="Reservar eliminación de contraseña en Windows" onclick="window.open('https://wa.me/5356639178?text=Necesito%20quitar%20la%20contrase%C3%B1a%20de%20mi%20Windows')">Reservar</button>
+        </article>
+        <article class="precio-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?fm=webp&w=320&q=80" alt="Eliminación de contraseña en Android" />
+          Quitar contraseña Android (se pierde todo) – <strong>500 CUP</strong>
+          <button aria-label="Reservar eliminación de contraseña en Android" onclick="window.open('https://wa.me/5356639178?text=Quiero%20quitar%20la%20contrase%C3%B1a%20de%20mi%20Android%2C%20entiendo%20que%20se%20pierde%20todo')">Reservar</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto" aria-labelledby="contacto-heading">
+      <h2 id="contacto-heading">Contacto</h2>
+      <p>WhatsApp: <a href="https://wa.me/5356639178" aria-label="Contactar por WhatsApp">+5356639178</a></p>
+      <p>Email: <a href="mailto:rodreyrj@gmail.com" aria-label="Enviar correo electrónico">rodreyrj@gmail.com</a></p>
+      <div class="social-links" aria-label="Enlaces a redes sociales">
+        <a href="https://www.instagram.com/rod_rey_rj" target="_blank" aria-label="Instagram de Rod Rey RJ"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/rod.rey.rj" target="_blank" aria-label="Facebook de Rod Rey RJ"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/rodreyrj" target="_blank" aria-label="GitHub de Rod Rey RJ"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Rod Rey RJ – Todos los derechos reservados</p>
+    <p>Desarrollado con excelencia en Visual Studio Code | GitHub: <a href="https://github.com/rodreyrj" target="_blank" aria-label="Perfil de GitHub de Rod Rey RJ">rodreyrj</a></p>
+  </footer>
+</body>
+</html>
