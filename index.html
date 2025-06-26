@@ -10,12 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
+    /* Tus estilos originales sin cambios */
     :root {
       --primary-color: #00CED1;
       --primary-hover: #00B7B9;
       --accent-color: #D4A017;
-      --text-color: #111; /* Negro intenso para máxima legibilidad */
-      --text-secondary: #222; /* Un poco más claro pero sigue siendo oscuro */
+      --text-color: #111;
+      --text-secondary: #222;
       --background-overlay: rgba(0, 0, 0, 0.5);
       --accent-dark: #1A202C;
       --section-padding: 100px 20px 80px;
@@ -123,10 +124,10 @@
     }
     .hero p {
       font-size: clamp(1.4rem, 3vw, 2rem);
-      color: #111; /* Negro intenso para máxima visibilidad */
+      color: #111;
       max-width: 700px;
       font-weight: 600;
-      text-shadow: 0 1px 8px rgba(255,255,255,0.18); /* Un leve brillo para que no se pierda en fondos claros */
+      text-shadow: 0 1px 8px rgba(255,255,255,0.18);
     }
     section {
       padding: var(--section-padding);
@@ -165,7 +166,7 @@
       flex-direction: column;
       gap: 15px;
       cursor: pointer;
-      color: #111; /* Texto negro en tarjetas */
+      color: #111;
     }
     .servicio-card:hover,
     .precio-card:hover {
@@ -250,6 +251,102 @@
       .hero p { font-size: 1.3rem; }
       .precio-card button { width: 100%; font-size: 1rem; }
       .servicio-grid { grid-template-columns: 1fr; }
+    }
+
+    /* --- NOTIFICACIÓN FLOTANTE --- */
+    #notification-icon {
+      position: fixed;
+      top: 100px; /* subido para no tapar contenido */
+      right: 30px;
+      background: var(--primary-color);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 11000;
+      user-select: none;
+    }
+    #notification-icon i {
+      font-size: 24px;
+    }
+    #notification-count {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: var(--accent-color);
+      color: black;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      user-select: none;
+    }
+    #notification-panel {
+      position: fixed;
+      top: 150px; /* debajo del icono */
+      right: 30px;
+      width: 320px;
+      max-width: 90vw;
+      background: var(--card-background);
+      backdrop-filter: blur(8px);
+      border: var(--glass-border);
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      color: var(--text-color);
+      z-index: 11000;
+      display: none;
+      flex-direction: column;
+    }
+    #notification-panel.active {
+      display: flex;
+    }
+    #notification-panel h3 {
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+    }
+    #notification-panel ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 10px;
+    }
+    #notification-panel ul li {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    #notification-panel ul li a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    #notification-panel ul li a:hover,
+    #notification-panel ul li a:focus {
+      color: var(--accent-color);
+      outline: none;
+    }
+    #close-notifications {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+    #close-notifications:hover,
+    #close-notifications:focus {
+      color: var(--accent-color);
+      outline: none;
     }
   </style>
 </head>
@@ -376,5 +473,54 @@
     <p>© 2025 Rod Rey RJ – Todos los derechos reservados</p>
     <p>Desarrollado con excelencia en Visual Studio Code | GitHub: <a href="https://github.com/rodreyrj" target="_blank" aria-label="Perfil de GitHub de Rod Rey RJ">rodreyrj</a></p>
   </footer>
+
+  <!-- Notificación flotante agregada sin modificar nada más -->
+  <div id="notification-icon" role="button" tabindex="0" aria-label="Notificaciones" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-bell"></i>
+    <span id="notification-count" aria-live="polite" aria-atomic="true">2</span>
+  </div>
+
+  <div id="notification-panel" role="region" aria-label="Panel de promociones" aria-hidden="true">
+    <button id="close-notifications" aria-label="Cerrar notificaciones">&times;</button>
+    <h3>Promociones</h3>
+    <ul>
+      <li>Perfumería Original Banes con los mejores Perfumes Únete Aquí  👉 <a href="https://chat.whatsapp.com/GGNphdI8YXVCOvp89EvdFo" target="_blank" rel="noopener noreferrer">grupo</a></li>
+      <li>El juego del calamar nueva 27 junio  temporada Reserva  👉 <a href="https://whatsapp.com/channel/0029VbB3aEAHgZWlsf0BvP1n" target="_blank" rel="noopener noreferrer">canal</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const notificationIcon = document.getElementById('notification-icon');
+    const notificationCount = document.getElementById('notification-count');
+    const notificationPanel = document.getElementById('notification-panel');
+    const closeNotificationsBtn = document.getElementById('close-notifications');
+
+    notificationIcon.addEventListener('click', () => {
+      const expanded = notificationIcon.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
+        notificationPanel.classList.remove('active');
+        notificationPanel.setAttribute('aria-hidden', 'true');
+        notificationIcon.setAttribute('aria-expanded', 'false');
+      } else {
+        notificationPanel.classList.add('active');
+        notificationPanel.setAttribute('aria-hidden', 'false');
+        notificationIcon.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    closeNotificationsBtn.addEventListener('click', () => {
+      notificationPanel.classList.remove('active');
+      notificationPanel.setAttribute('aria-hidden', 'true');
+      notificationIcon.setAttribute('aria-expanded', 'false');
+      notificationCount.style.display = 'none'; // Oculta contador sin perder número
+    });
+
+    notificationIcon.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        notificationIcon.click();
+      }
+    });
+  </script>
 </body>
 </html>
