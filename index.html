@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    /* Tus estilos originales sin cambios */
     :root {
       --primary-color: #00CED1;
       --primary-hover: #00B7B9;
@@ -236,28 +235,12 @@
       color: var(--accent-color);
       outline: none;
     }
-    @media (max-width: 768px) {
-      header { flex-direction: column; gap: 15px; padding: 10px 0; }
-      .logo { padding: 0; font-size: 1.8rem; }
-      nav a { margin: 8px; font-size: 1rem; }
-      .hero h1 { font-size: 3rem; }
-      .hero p { font-size: 1.6rem; }
-      section { padding: 80px 15px 60px; }
-      h2 { font-size: 2.5rem; }
-      .servicio-card img, .precio-card img { height: 180px; }
-    }
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1.3rem; }
-      .precio-card button { width: 100%; font-size: 1rem; }
-      .servicio-grid { grid-template-columns: 1fr; }
-    }
 
     /* --- NOTIFICACIÓN FLOTANTE --- */
     #notification-icon {
       position: fixed;
-      top: 100px; /* subido para no tapar contenido */
-      right: 30px;
+      bottom: 30px;
+      left: 30px;
       background: var(--primary-color);
       color: white;
       width: 50px;
@@ -288,8 +271,8 @@
     }
     #notification-panel {
       position: fixed;
-      top: 150px; /* debajo del icono */
-      right: 30px;
+      bottom: 90px;
+      left: 30px;
       width: 320px;
       max-width: 90vw;
       background: var(--card-background);
@@ -474,12 +457,11 @@
     <p>Desarrollado con excelencia en Visual Studio Code | GitHub: <a href="https://github.com/rodreyrj" target="_blank" aria-label="Perfil de GitHub de Rod Rey RJ">rodreyrj</a></p>
   </footer>
 
-  <!-- Notificación flotante agregada sin modificar nada más -->
+  <!-- Notificación flotante ESQUINA INFERIOR IZQUIERDA -->
   <div id="notification-icon" role="button" tabindex="0" aria-label="Notificaciones" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-bell"></i>
     <span id="notification-count" aria-live="polite" aria-atomic="true">2</span>
   </div>
-
   <div id="notification-panel" role="region" aria-label="Panel de promociones" aria-hidden="true">
     <button id="close-notifications" aria-label="Cerrar notificaciones">&times;</button>
     <h3>Promociones</h3>
@@ -488,13 +470,11 @@
       <li>El juego del calamar nueva temporada 👉 <a href="https://whatsapp.com/channel/0029VbB3aEAHgZWlsf0BvP1n" target="_blank" rel="noopener noreferrer">canal</a></li>
     </ul>
   </div>
-
   <script>
     const notificationIcon = document.getElementById('notification-icon');
     const notificationCount = document.getElementById('notification-count');
     const notificationPanel = document.getElementById('notification-panel');
     const closeNotificationsBtn = document.getElementById('close-notifications');
-
     notificationIcon.addEventListener('click', () => {
       const expanded = notificationIcon.getAttribute('aria-expanded') === 'true';
       if (expanded) {
@@ -507,14 +487,12 @@
         notificationIcon.setAttribute('aria-expanded', 'true');
       }
     });
-
     closeNotificationsBtn.addEventListener('click', () => {
       notificationPanel.classList.remove('active');
       notificationPanel.setAttribute('aria-hidden', 'true');
       notificationIcon.setAttribute('aria-expanded', 'false');
-      notificationCount.style.display = 'none'; // Oculta contador sin perder número
+      notificationCount.style.display = 'none';
     });
-
     notificationIcon.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
