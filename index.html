@@ -498,24 +498,6 @@
       </div>
     </section>
 
-    <!-- Nueva Sección: Generador de Ideas para Servicios Informáticos con IA -->
-    <section id="service-idea-generator" style="padding: var(--section-padding); margin: auto; position: relative; z-index: 1;">
-        <h2 style="color: var(--primary-color); text-align: center;">✨ Generador de Ideas para Servicios Informáticos ✨</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; font-size: 1.1rem; color: var(--text-color);">
-            ¿Necesitas una nueva idea para un servicio, una descripción más atractiva, o un eslogan para tu negocio?
-            Describe lo que buscas y nuestra IA te ayudará.
-        </p>
-        <div style="background: var(--card-background); backdrop-filter: blur(8px); border: var(--glass-border); padding: 25px; border-radius: 15px; box-shadow: var(--shadow); max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
-            <textarea id="serviceIdeaPrompt" placeholder="Ej: 'Genera 3 ideas de servicios para la seguridad en el hogar' o 'Escribe un eslogan para mi servicio de reparación de laptops'." rows="6" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; background-color: #f9f9f9; resize: vertical;"></textarea>
-            <button id="generateIdeaButton" style="background: var(--primary-color); color: white; font-weight: 700; font-size: 1.1rem; border: none; border-radius: 6px; padding: 12px 25px; cursor: pointer; transition: background 0.3s, transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                Generar Idea ✨
-            </button>
-            <div id="ideaLoading" style="text-align: center; color: var(--primary-color); font-weight: bold; margin-top: 15px; display: none;">Cargando...</div>
-            <div id="ideaResponse" style="margin-top: 20px; padding: 20px; background-color: #e6f7ff; border: 1px solid #99ddff; border-radius: 8px; font-size: 1rem; color: var(--text-color); white-space: pre-wrap; display: none;"></div>
-            <div id="ideaError" style="margin-top: 20px; padding: 15px; background-color: #ffebeb; border: 1px solid #ffcccc; border-radius: 8px; font-size: 1rem; color: #cc0000; display: none;"></div>
-        </div>
-    </section>
-    
     <section id="contacto" aria-labelledby="contacto-heading">
       <h2 id="contacto-heading">Contacto</h2>
       <p>WhatsApp: <a href="https://wa.me/5356639178" aria-label="Contactar por WhatsApp">+5356639178</a></p>
@@ -554,14 +536,6 @@
     const notificationCount = document.getElementById('notification-count');
     const notificationPanel = document.getElementById('notification-panel');
     const closeNotificationsBtn = document.getElementById('close-notifications');
-
-    // Elementos para el generador de ideas
-    const serviceIdeaPrompt = document.getElementById('serviceIdeaPrompt');
-    const generateIdeaButton = document.getElementById('generateIdeaButton');
-    const ideaLoading = document.getElementById('ideaLoading');
-    const ideaResponse = document.getElementById('ideaResponse');
-    const ideaError = document.getElementById('ideaError');
-
 
     document.addEventListener('DOMContentLoaded', () => {
       // Contar las promociones y actualizar la insignia al cargar la página
@@ -618,65 +592,6 @@
         notificationIcon.click();
       }
     });
-
-    // Lógica para el Generador de Ideas con IA
-    if (generateIdeaButton && serviceIdeaPrompt && ideaLoading && ideaResponse && ideaError) {
-        generateIdeaButton.addEventListener('click', async () => {
-            const prompt = serviceIdeaPrompt.value.trim();
-
-            if (!prompt) {
-                ideaError.textContent = "Por favor, describe la idea que buscas.";
-                ideaError.style.display = 'block';
-                ideaResponse.style.display = 'none';
-                return;
-            }
-
-            // Limpiar y mostrar cargando
-            ideaError.style.display = 'none';
-            ideaResponse.style.display = 'none';
-            ideaLoading.style.display = 'block';
-            ideaResponse.textContent = ''; // Limpiar el texto de respuesta anterior
-
-            try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: `Actúa como un consultor de marketing especializado en negocios de informática y tecnología. Genera una idea, descripción o eslogan basado en la siguiente solicitud: "${prompt}". Sé creativo, conciso y profesional. No añadas introducción ni despedida.` }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // La clave API se proporcionará automáticamente en el entorno de Canvas si se deja vacía
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error de red: ${response.statusText}`);
-                }
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    ideaResponse.textContent = text;
-                    ideaResponse.style.display = 'block';
-                } else {
-                    ideaError.textContent = "No se pudo generar una idea. Inténtalo de nuevo.";
-                    ideaError.style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Error al llamar a la API de Gemini para generar ideas:', error);
-                ideaError.textContent = "Hubo un error al conectar con la IA. Por favor, revisa tu conexión o inténtalo más tarde.";
-                ideaError.style.display = 'block';
-            } finally {
-                ideaLoading.style.display = 'none'; // Ocultar el indicador de carga
-            }
-        });
-    } else {
-        console.error("Algunos elementos DOM necesarios para el Generador de Ideas de IA no se encontraron.");
-    }
   </script>
 </body>
 </html>
